@@ -4,6 +4,10 @@ Run:  pip install -r requirements-satellite.txt && python satellite_update.py
 Needs internet (reads only a small window of the public Sentinel-2 L2A scenes).
 The app itself only reads the files this script writes, so the demo works offline.
 """
+import os
+os.environ.pop("PROJ_LIB", None)
+os.environ.pop("PROJ_DATA", None)
+
 import csv
 import json
 from pathlib import Path
@@ -20,10 +24,6 @@ import geopandas as gpd
 from skimage.filters import threshold_otsu
 
 from core.satellite import area_pct_of_full
-
-import os
-os.environ.pop("PROJ_LIB", None)
-os.environ.pop("PROJ_DATA", None)
 
 # ================= SETTINGS =================
 RESERVOIR = "Ticha"
